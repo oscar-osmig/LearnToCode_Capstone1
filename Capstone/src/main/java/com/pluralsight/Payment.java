@@ -22,8 +22,11 @@ public class Payment
         boolean run = true;
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("transactions.csv", true));
         String invoice;
+        String card;
         float deposit = 0;
         do {    // Maaike help me fix a bug
+            System.out.println("\nEnter last 4 digits of your card:");
+            card = scanner.nextLine();
             System.out.println("\nEnter Payment description:");
             invoice = scanner.nextLine();
             System.out.println("Payment Amount:");
@@ -49,12 +52,12 @@ public class Payment
         Transaction transaction = new Transaction(currenr_date, current_time, invoice, name, deposit);
 
         String todays_transaction = "\n" + transaction.getDate() + "|" + transaction.getTime() + "|" +
-                transaction.getDescription() + "|" + transaction.getVendor() + "|" +
+                transaction.getDescription() + " " + card + "|" + transaction.getVendor() + "|" +
                 (transaction.getAmount() * -1);
 
         //System.out.println(todays_transaction);
         bufferedWriter.write(todays_transaction);
-        scanner.close();
+
         bufferedWriter.close();
         System.out.println("* Successful Transaction *");
 
@@ -73,7 +76,13 @@ public class Payment
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        make_payment(scanner);
-
+        boolean run = true;
+        do {
+            make_payment(scanner);
+            System.out.println("Do you want to make a new deposit? y: yes n: Home Screen");
+            String choice = scanner.nextLine();
+            switch (choice){case "n": run = false; Main.channel(); break;}
+        }while (run);
+        //scanner.close();
     }
 }

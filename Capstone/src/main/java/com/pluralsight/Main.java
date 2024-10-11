@@ -31,18 +31,18 @@ public class Main
                 case "D": case "d":
                 // add method for depositing
                 Deposit.add_deposit(scanner);
-                running = false;
-                break;
+                    running = false;
+                    break;
                 case "P": case "p":
-                Payment.make_payment(scanner);
+                    Payment.make_payment(scanner);
                 running = false;
-                break;
+                    break;
                 case "L": case "l":
-                running = false;
-                break;
+                    running = false;
+                    break;
                 case "X": case "x":
-                running = false;
-                break;
+                    running = false;
+                    break;
                 default:
                     System.out.println("That's not a valid option, try again ...");
             }
