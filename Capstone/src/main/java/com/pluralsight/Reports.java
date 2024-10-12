@@ -1,6 +1,8 @@
 package com.pluralsight;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Reports {
@@ -23,6 +25,7 @@ public class Reports {
             board();
             System.out.println("Your choice:");
             int choice = scanner.nextInt();
+            scanner.nextLine();
             switch (choice)
             {
                 case 1:
@@ -31,11 +34,10 @@ public class Reports {
                     running = false;
                     break;
                 case 2:
-
                     running = false;
                     break;
                 case 3:
-
+                    get_year_to_date(scanner, Ledger.getTransaction());
                     running = false;
                     break;
                 case 4:
@@ -52,6 +54,29 @@ public class Reports {
             }
         }while(running) ;
     }
+
+    public static void get_year_to_date(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException
+    {
+        int counter = 1;
+        ArrayList<Transaction> year = transactions;
+        int yearnow = LocalDate.now().getYear();
+        for(Transaction this_year : year)
+        {
+            int currentyear = this_year.getDate().getYear();
+            if( currentyear == yearnow ) {
+                //found it!
+                System.out.println("------ transaction " + counter + " on " + yearnow + " ------ \n" + "\nDate: " +
+                        this_year.getDate() + "\nTime: " + this_year.getTime() + "\nDescription: " +
+                        this_year.getDescription() + "\nVendor: " + this_year.getVendor() + "\nAmount: " +
+                        this_year.getAmount() + "\n");
+                counter++;
+            }
+        }
+        System.out.println("\n* Press < enter > when ready to get back to reports menu *");
+        String input = scanner.nextLine();
+        if (input.equals("")){channel();}
+    }
+
 
     public static void main(String[] args) throws IOException, InterruptedException {
         channel();

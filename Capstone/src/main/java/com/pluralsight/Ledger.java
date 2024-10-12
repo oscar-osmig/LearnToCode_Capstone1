@@ -77,7 +77,8 @@ public class Ledger {
         return transactions;
     }
 
-    public static void displayAllTransaction() throws IOException, InterruptedException {
+    public static void displayAllTransaction() throws IOException, InterruptedException
+    {
         ArrayList<Transaction> data_in_file = getTransaction();
         int counter = 1;
         for (int i = 0; i < data_in_file.size(); i++)

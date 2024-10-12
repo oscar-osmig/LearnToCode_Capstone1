@@ -35,7 +35,7 @@ public class Main
                     break;
                 case "P": case "p":
                     Payment.make_payment(scanner);
-                running = false;
+                    running = false;
                     break;
                 case "L": case "l":
                     Ledger.channel();
