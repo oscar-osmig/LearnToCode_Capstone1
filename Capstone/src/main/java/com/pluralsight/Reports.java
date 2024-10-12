@@ -18,6 +18,7 @@ public class Reports {
                            spacing1 + "3) Year To Date    " + spacing2 +
                            spacing1 + "4) Previous Year   " + spacing2 +
                            spacing1 + "5) Search by Vendor" + spacing2 +
+                           spacing1 + "6) Custom search   " + spacing2 +
                            spacing1 + "0) Back            " + spacing2);
     }
 
@@ -60,6 +61,9 @@ public class Reports {
                 case 5:
                     //System.out.println("searching");
                     search_by_vendor(scanner, Ledger.getTransaction());
+                    running = false;
+                    break;
+                case 6:
                     running = false;
                     break;
                 case 0:
@@ -178,7 +182,6 @@ public class Reports {
         String input = scanner.nextLine();
         if (input.equals("")){channel();}
     }
-
 
     public static void main(String[] args) throws IOException, InterruptedException {
         channel();
