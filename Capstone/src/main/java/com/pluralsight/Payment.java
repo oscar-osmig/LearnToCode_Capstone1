@@ -61,7 +61,7 @@ public class Payment
         System.out.println("* Successful Transaction *");
         System.out.println("\nDo you want to make a new payment? y: yes n: Home Screen");
         String choice = scanner.nextLine();
-        switch (choice){case "n": run = false; Main.channel(); break;}
+        switch (choice){case "n": run = false; Main.channel(); break; case "y": make_payment(scanner); break;}
 
     }
 

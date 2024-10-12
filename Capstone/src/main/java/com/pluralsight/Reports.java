@@ -30,13 +30,14 @@ public class Reports {
             System.out.println("Your choice:");
             try {
                 choice = scanner.nextInt();
+
             }catch (Exception e){
                 continue;
             }finally {
                 scanner.nextLine();
             }
 
-            scanner.nextLine();
+            //scanner.nextLine();
             switch (choice)
             {
                 case 1:
@@ -75,7 +76,7 @@ public class Reports {
         System.out.println("\nVendor's name:");
         String vendor = scanner.nextLine().toLowerCase();
         for(Transaction transac : transactions) {
-            System.out.println(transac.getVendor());
+            //System.out.println(transac.getVendor());
             if (vendor.equals(transac.getVendor().toLowerCase())){
                 System.out.println("\n------ transaction " + counter + " ------ \n" + "\nDate: " +
                         transac.getDate() + "\nTime: " + transac.getTime() + "\nDescription: " +

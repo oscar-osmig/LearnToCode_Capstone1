@@ -58,7 +58,7 @@ public class Deposit
         System.out.println("* Successful Deposit *");
         System.out.println("\nDo you want to make a new deposit? y: yes n: Home Screen");
         String choice = scanner.nextLine();
-        switch (choice){case "n": Main.channel(); break;}
+        switch (choice){case "n": Main.channel(); break; case "y": add_deposit(scanner); break;}
 
     }
 
