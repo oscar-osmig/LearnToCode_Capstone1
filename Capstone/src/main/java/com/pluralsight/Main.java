@@ -41,9 +41,9 @@ public class Main
                     Ledger.channel();
                     running = false;
                     break;
-                case "X": case "x":
-                    running = false;
+                case "x": case "X":
                     System.out.println("Thank you for trusting us");
+                    running = false;
                     break;
                 default:
                     System.out.println("That's not a valid option, try again ...");
