@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -46,7 +47,9 @@ public class Reports {
                     running = false;
                     break;
                 case 5:
-
+                    //System.out.println("searching");
+                    search_by_vendor(scanner, Ledger.getTransaction());
+                    running = false;
                     break;
                 case 0:
                     Ledger.channel();
@@ -55,6 +58,26 @@ public class Reports {
                     System.out.println("That's not a valid option, try again ...");
             }
         }while(running) ;
+    }
+
+    public static void search_by_vendor(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
+        int counter = 1;
+        System.out.println("\nVendor's name:");
+        String vendor = scanner.nextLine().toLowerCase();
+        for(Transaction transac : transactions) {
+            System.out.println(transac.getVendor());
+            if (vendor.equals(transac.getVendor().toLowerCase())){
+                System.out.println("\n------ transaction " + counter + " ------ \n" + "\nDate: " +
+                        transac.getDate() + "\nTime: " + transac.getTime() + "\nDescription: " +
+                        transac.getDescription() + "\nVendor: " + transac.getVendor() + "\nAmount: " +
+                        transac.getAmount() + "\n");
+                counter++;
+            }
+        }
+        System.out.println("\n* Press < enter > when ready to get back to reports menu *");
+        String input = scanner.nextLine();
+        if (input.equals("")){channel();}
+
     }
 
     public static void get_previous_month(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException
