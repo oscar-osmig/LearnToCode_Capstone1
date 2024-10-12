@@ -15,8 +15,7 @@ public class Payment
     private static Scanner scanner = new Scanner(System.in);
     private static boolean running = true;
 
-    public static void make_payment(Scanner scanner) throws IOException
-    {
+    public static void make_payment(Scanner scanner) throws IOException, InterruptedException {
         LocalTime current_time = local_time();
         LocalDate currenr_date = local_date();
         boolean run = true;
@@ -60,6 +59,9 @@ public class Payment
 
         bufferedWriter.close();
         System.out.println("* Successful Transaction *");
+        System.out.println("\nDo you want to make a new payment? y: yes n: Home Screen");
+        String choice = scanner.nextLine();
+        switch (choice){case "n": run = false; Main.channel(); break;}
 
     }
 
@@ -75,14 +77,8 @@ public class Payment
         return currentime;
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        boolean run = true;
-        do {
+    public static void main(String[] args) throws IOException, InterruptedException
+    {
             make_payment(scanner);
-            System.out.println("Do you want to make a new deposit? y: yes n: Home Screen");
-            String choice = scanner.nextLine();
-            switch (choice){case "n": run = false; Main.channel(); break;}
-        }while (run);
-        //scanner.close();
     }
 }

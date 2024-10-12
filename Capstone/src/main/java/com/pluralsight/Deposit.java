@@ -15,8 +15,7 @@ public class Deposit
     private static Scanner scanner = new Scanner(System.in);
     private static boolean running = true;
 
-    public static void add_deposit(Scanner scanner) throws IOException
-    {
+    public static void add_deposit(Scanner scanner) throws IOException, InterruptedException {
         LocalTime current_time = local_time();
         LocalDate currenr_date = local_date();
         boolean run = true;
@@ -56,7 +55,11 @@ public class Deposit
         bufferedWriter.write(todays_transaction);
         scanner.close();
         bufferedWriter.close();
+
         System.out.println("* Successful Deposit *");
+        System.out.println("\nDo you want to make a new deposit? y: yes n: Home Screen");
+        String choice = scanner.nextLine();
+        switch (choice){case "n": Main.channel(); break;}
 
     }
 
@@ -72,14 +75,9 @@ public class Deposit
         return currentime;
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        do {
+    public static void main(String[] args) throws IOException, InterruptedException
+    {
             add_deposit(scanner);
-            System.out.println("Do you want to make a new deposit? y: yes n: Home Screen");
-            String choice = scanner.nextLine();
-            switch (choice){case "n": Main.channel(); break;}
-        }while (running);
-
 
     }
 }

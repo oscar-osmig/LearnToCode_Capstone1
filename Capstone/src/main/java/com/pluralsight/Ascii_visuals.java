@@ -7,8 +7,8 @@ import java.io.IOException;
 
 public class Ascii_visuals {
 
-    public static void displayAppTitle() throws IOException, InterruptedException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("title.txt"));
+    public static void displayHome(String File) throws IOException, InterruptedException {
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(File));
         String line;
         while ( (line = bufferedReader.readLine() ) != null){
             System.out.println(line);
@@ -17,6 +17,6 @@ public class Ascii_visuals {
     }
 
     public static void main(String[] args) throws IOException, InterruptedException {
-        displayAppTitle();
+        displayHome("home.txt");
     }
 }

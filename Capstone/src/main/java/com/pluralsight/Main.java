@@ -11,19 +11,19 @@ public class Main
     public static void display_home() throws IOException, InterruptedException
     {
         String spacing1 = "                                                                   ";
-        String spacing2 = "                                                                                  \n";
-        Ascii_visuals.displayAppTitle();
+        String spacing2 = "                                                                  \n";
+        Ascii_visuals.displayHome("home.txt");
         System.out.println("\n" + spacing1 +
-                "D) Add deposit   " + spacing2 +
-                spacing1 + "P) Make a payment" + spacing2 + spacing1 +
-                "L) Ledger        " + spacing2 + spacing1 +
-                "X) Quit          " + spacing2);
+                "D) Add deposit           " + spacing2 +
+                spacing1 + "P) Make a payment (debit)" + spacing2 + spacing1 +
+                "L) Ledger                " + spacing2 + spacing1 +
+                "X) Quit                  " + spacing2);
 
     }
 
-    public static void channel() throws IOException {
+    public static void channel() throws IOException, InterruptedException {
         do {
-            //display_home();
+            display_home();
             System.out.println("Your choice:");
             String choice = scanner.nextLine();
             switch (choice)
@@ -41,6 +41,7 @@ public class Main
                     running = false;
                     break;
                 case "X": case "x":
+                    System.out.println("Thank you for trusting us");
                     running = false;
                     break;
                 default:
