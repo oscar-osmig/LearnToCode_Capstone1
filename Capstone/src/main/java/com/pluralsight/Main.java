@@ -42,7 +42,8 @@ public class Main
                     running = false;
                     break;
                 case "x": case "X":
-                    System.out.println("Thank you for trusting us");
+                    Ascii_visuals.display("bye.txt");
+                    Ascii_visuals.display("meme.txt");
                     running = false;
                     break;
                 default:
