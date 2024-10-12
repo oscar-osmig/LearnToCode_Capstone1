@@ -121,7 +121,8 @@ public class Ledger {
         }
         System.out.println("\n* Press < enter > when ready to get back to menu *");
         String input = scanner.nextLine();
-        if (input.equals("")){Main.channel();}
+
+        if (input.equals("")){channel();}
     }
 
     public static void main(String[] args) throws IOException, InterruptedException

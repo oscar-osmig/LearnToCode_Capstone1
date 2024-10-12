@@ -42,8 +42,8 @@ public class Main
                     running = false;
                     break;
                 case "X": case "x":
-                    System.out.println("Thank you for trusting us");
                     running = false;
+                    System.out.println("Thank you for trusting us");
                     break;
                 default:
                     System.out.println("That's not a valid option, try again ...");
