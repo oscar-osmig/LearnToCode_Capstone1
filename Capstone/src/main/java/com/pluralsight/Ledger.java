@@ -48,6 +48,7 @@ public class Ledger {
                     running = false;
                     break;
                 case "R": case "r":
+                    Reports.channel();
                     running = false;
                     break;
                 case "H": case "h":
