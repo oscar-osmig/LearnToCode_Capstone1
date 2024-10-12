@@ -34,6 +34,7 @@ public class Reports {
                     running = false;
                     break;
                 case 2:
+                    get_previous_month(scanner, Ledger.getTransaction());
                     running = false;
                     break;
                 case 3:
@@ -64,9 +65,9 @@ public class Reports {
         for(Transaction t_month : month)
         {
             int currentmonth = t_month.getDate().getMonthValue();
-            if( currentmonth == monthnow ) {
+            if( currentmonth == (monthnow-1) ) {
                 //found it!
-                System.out.println("------ transaction " + counter + " on " + t_month.getDate().getMonth() + " ------ \n" + "\nDate: " +
+                System.out.println("------ transaction " + counter + " on " + (t_month.getDate().getMonth()) + " ------ \n" + "\nDate: " +
                         t_month.getDate() + "\nTime: " + t_month.getTime() + "\nDescription: " +
                         t_month.getDescription() + "\nVendor: " + t_month.getVendor() + "\nAmount: " +
                         t_month.getAmount() + "\n");
