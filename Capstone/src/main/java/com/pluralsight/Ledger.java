@@ -44,6 +44,7 @@ public class Ledger {
                     running = false;
                     break;
                 case "P": case "p":
+                    display_payments(scanner, getTransaction());
                     running = false;
                     break;
                 case "R": case "r":
@@ -105,6 +106,23 @@ public class Ledger {
         String input = scanner.nextLine();
         if (input.equals("")){Main.channel();}
     }
+
+    public static void display_payments(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
+        int counter = 1;
+        for(Transaction deposits : transactions)
+        {
+            if(deposits.getAmount() < 0) {
+                //found it!
+                System.out.println("------ Payment " + counter + " ------ \n" + "\nDate: " + deposits.getDate() + "\nTime: " + deposits.getTime() + "\nDescription: " +
+                        deposits.getDescription() + "\nVendor: " + deposits.getVendor() + "\nAmount: " + deposits.getAmount() + "\n");
+                counter++;
+            }
+        }
+        System.out.println("\n* Press < enter > when ready to get back to menu *");
+        String input = scanner.nextLine();
+        if (input.equals("")){Main.channel();}
+    }
+
 
     public static void main(String[] args) throws IOException, InterruptedException
     {
