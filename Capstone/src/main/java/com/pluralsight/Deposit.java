@@ -53,7 +53,6 @@ public class Deposit
 
         //System.out.println(todays_transaction);
         bufferedWriter.write(todays_transaction);
-        scanner.close();
         bufferedWriter.close();
 
         System.out.println("* Successful Deposit *");

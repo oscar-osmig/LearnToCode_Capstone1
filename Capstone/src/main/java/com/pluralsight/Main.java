@@ -12,7 +12,7 @@ public class Main
     {
         String spacing1 = "                                                                   ";
         String spacing2 = "                                                                  \n";
-        Ascii_visuals.displayHome("home.txt");
+        Ascii_visuals.display("home.txt");
         System.out.println("\n" + spacing1 +
                 "D) Add deposit           " + spacing2 +
                 spacing1 + "P) Make a payment (debit)" + spacing2 + spacing1 +
@@ -38,6 +38,7 @@ public class Main
                 running = false;
                     break;
                 case "L": case "l":
+                    Ledger.channel();
                     running = false;
                     break;
                 case "X": case "x":
