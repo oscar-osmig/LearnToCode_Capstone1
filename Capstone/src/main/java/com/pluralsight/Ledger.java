@@ -18,7 +18,7 @@ public class Ledger {
     public static void board() throws IOException, InterruptedException
     {
         Ascii_visuals.display("ledger.txt");
-        System.out.println("\n A) All" +
+        System.out.println("\n A) All transactions" +
                            "\n D) Deposits" +
                            "\n P) Payments" +
                            "\n R) Reports" +
@@ -51,6 +51,7 @@ public class Ledger {
                     running = false;
                     break;
                 case "H": case "h":
+                    Main.channel();
                     break;
                 default:
                     System.out.println("That's not a valid option, try again ...");
@@ -77,18 +78,17 @@ public class Ledger {
 
     public static void displayAllTransaction() throws IOException, InterruptedException {
         ArrayList<Transaction> data_in_file = getTransaction();
-        System.out.println("\nAll transactions:\n");
         int counter = 1;
         for (int i = 0; i < data_in_file.size(); i++)
         {
             Transaction p = data_in_file.get(i);
-            System.out.println("Transaction " + counter + "\nDate: " + p.getDate() + "\nTime: " + p.getTime() + "\nDescription: " +
+            System.out.println("------ transaction " + counter + " ------ \n" + p.getDate() + "\nTime: " + p.getTime() + "\nDescription: " +
                     p.getDescription() + "\nVendor: " + p.getVendor() + "\nAmount: " + p.getAmount() + "\n");
             counter++;
         }
         System.out.println("\n* Press < enter > when ready to get back to menu *");
         String input = scanner.nextLine();
-        if (input.equals("")){ Main.channel();}
+        if (input.equals("")){channel();}
     }
 
     public static void display_deposits(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
@@ -104,7 +104,7 @@ public class Ledger {
         }
         System.out.println("\n* Press < enter > when ready to get back to menu *");
         String input = scanner.nextLine();
-        if (input.equals("")){Main.channel();}
+        if (input.equals("")){channel();}
     }
 
     public static void display_payments(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
@@ -113,7 +113,7 @@ public class Ledger {
         {
             if(deposits.getAmount() < 0) {
                 //found it!
-                System.out.println("------ Payment " + counter + " ------ \n" + "\nDate: " + deposits.getDate() + "\nTime: " + deposits.getTime() + "\nDescription: " +
+                System.out.println("------ payment " + counter + " ------ \n" + "\nDate: " + deposits.getDate() + "\nTime: " + deposits.getTime() + "\nDescription: " +
                         deposits.getDescription() + "\nVendor: " + deposits.getVendor() + "\nAmount: " + deposits.getAmount() + "\n");
                 counter++;
             }
@@ -122,7 +122,6 @@ public class Ledger {
         String input = scanner.nextLine();
         if (input.equals("")){Main.channel();}
     }
-
 
     public static void main(String[] args) throws IOException, InterruptedException
     {
