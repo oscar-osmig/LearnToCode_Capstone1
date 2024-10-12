@@ -17,12 +17,14 @@ public class Ledger {
 
     public static void board() throws IOException, InterruptedException
     {
+        String spacing1 = "                                                                           ";
+        String spacing2 = "                                                                  \n";
         Ascii_visuals.display("ledger.txt");
-        System.out.println("\n A) All transactions" +
-                           "\n D) Deposits" +
-                           "\n P) Payments" +
-                           "\n R) Reports" +
-                           "\n H) Home");
+        System.out.println("\n" + spacing1 +" A) All transactions" + spacing2 +
+                           spacing1 + " D) Deposits        " + spacing2 +
+                           spacing1 + " P) Payments        " + spacing2 +
+                           spacing1 + " R) Reports         " + spacing2 +
+                           spacing1 + " H) Home            " + spacing2);
 
     }
 

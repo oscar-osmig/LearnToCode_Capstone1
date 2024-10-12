@@ -10,22 +10,32 @@ public class Reports {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void board() throws IOException, InterruptedException {
+        String spacing1 = "                                                                          ";
+        String spacing2 = "                                                                 \n";
         Ascii_visuals.display("reports.txt");
-        System.out.println("\n 1) Month To Date" +
-                           "\n 2) Previous Month" +
-                           "\n 3) Year To Date" +
-                           "\n 4) Previous Year" +
-                           "\n 5) Search by Vendor" +
-                           "\n 0) Back");
+        System.out.println("\n" + spacing1 + "1) Month To Date   " + spacing2 +
+                           spacing1 + "2) Previous Month  " + spacing2 +
+                           spacing1 + "3) Year To Date    " + spacing2 +
+                           spacing1 + "4) Previous Year   " + spacing2 +
+                           spacing1 + "5) Search by Vendor" + spacing2 +
+                           spacing1 + "0) Back            " + spacing2);
     }
 
     public static void channel() throws IOException, InterruptedException
     {
         boolean running = true;
+        int choice;
         do {
             board();
             System.out.println("Your choice:");
-            int choice = scanner.nextInt();
+            try {
+                choice = scanner.nextInt();
+            }catch (Exception e){
+                continue;
+            }finally {
+                scanner.nextLine();
+            }
+
             scanner.nextLine();
             switch (choice)
             {
