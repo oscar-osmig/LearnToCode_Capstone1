@@ -64,6 +64,7 @@ public class Reports {
                     running = false;
                     break;
                 case 6:
+                    CustomSearch.customSearch(scanner, Ledger.getTransaction());
                     running = false;
                     break;
                 case 0:

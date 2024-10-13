@@ -42,12 +42,13 @@ public class Main
                     running = false;
                     break;
                 case "x": case "X":
+                    running = false;
                     Ascii_visuals.display("bye.txt");
                     Ascii_visuals.display("meme.txt");
-                    running = false;
                     break;
                 default:
                     System.out.println("That's not a valid option, try again ...");
+                    Main.channel();
             }
         }while(running) ;
     }

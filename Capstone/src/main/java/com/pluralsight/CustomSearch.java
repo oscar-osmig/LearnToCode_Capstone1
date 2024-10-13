@@ -10,11 +10,13 @@ import java.util.Scanner;
 public class CustomSearch {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void customSearch(Scanner scanner, ArrayList<Transaction> transactions){
+    public static void customSearch(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
 
-        System.out.println("* Press <enter> to live category blank *");
+        Ascii_visuals.display("customSearch.txt");
+
+        System.out.println("\n* Press <enter> to live category blank *");
         // start date
-        System.out.println("Start date: (yyyy-mm-dd)");
+        System.out.println("\nStart date: (yyyy-mm-dd)");
         String startDate = scanner.nextLine();
         // end date
         System.out.println("End date: (yyyy-mm-dd)");
@@ -35,79 +37,78 @@ public class CustomSearch {
 
         if (startDate.isEmpty() && endDate.isEmpty() && description.isEmpty() && vendor.isEmpty()) // filter by amount
         {
-            System.out.println("* filtered by amount *");
+            System.out.println("\n* filtered by amount *");
             filter(amount, transaction);
         }
 
         else if (endDate.isEmpty() && description.isEmpty() && vendor.isEmpty() && amount == 0) { // filter by start date
-            System.out.println("* filtered by start-date *");
+            System.out.println("\n* filtered by start-date *");
             filterStartDate(startDate, transaction);
         }
 
         else if (startDate.isEmpty() && description.isEmpty() && vendor.isEmpty() && amount == 0) { // filter by end date
-            System.out.println("* filtered by end-date *");
+            System.out.println("\n* filtered by end-date *");
             filterStartDate(endDate, transaction);
         }
 
         else if ( startDate.isEmpty() && endDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filter by description only
-            System.out.println("* filtered by vendor ");
+            System.out.println("\n* filtered by vendor ");
             filter(description, transaction);
         }
 
-
         else if ( endDate.isEmpty() && startDate.isEmpty() && description.isEmpty() && amount == 0) { // filter by vendor only
-            System.out.println("* filtered by start-date and amount ");
+            System.out.println("\n* filtered by start-date and amount ");
             filter(vendor, transaction);
         }
 
         else if (startDate.isEmpty() && endDate.isEmpty()) { // filter by description, vendor, amount
-            System.out.println("* filtered by description, vendor and amount ");
+            System.out.println("\n* filtered by description, vendor and amount ");
             filter(description, vendor, amount, transaction);
         }
 
         else if (startDate.isEmpty() && endDate.isEmpty() && description.isEmpty()) { // filter by vendor, amount
-            System.out.println("* filtered by vendor and amount ");
+            System.out.println("\n* filtered by vendor and amount ");
             filter(description, vendor, amount, transaction);
         }
 
         else if (endDate.isEmpty() && description.isEmpty() && !vendor.isEmpty()) { // filtering by start date and vendor
-            System.out.println("* filtered from start date and vendor *");
+            System.out.println("\n* filtered from start date and vendor *");
             filter(startDate, vendor, transaction);
         }
 
         else if (!startDate.isEmpty() && endDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date and description
-            System.out.println("* filtered from start date and description *");
+            System.out.println("\n* filtered from start date and description *");
             filter(startDate, description, transaction);
         }
 
 
         else if (endDate.isEmpty() && description.isEmpty()) { // filtering by start date and vendor
-            System.out.println("* filtered from start date and vendor *");
+            System.out.println("\n* filtered from start date and vendor *");
             filter(startDate, vendor, transaction);
         }
 
         else if (endDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date and description
-            System.out.println("* filtered from start date and description *");
+            System.out.println("\n* filtered from start date and description *");
             filter(startDate, description, transaction);
         }
 
         else if (!endDate.isEmpty() && startDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by end date and description
-            System.out.println("* filtered from end date and description *");
+            System.out.println("\n* filtered from end date and description *");
             filter(endDate, description, transaction);
         }
 
         else if (description.isEmpty() && startDate.isEmpty() && amount == 0) { // filtering by end date and vendor
-            System.out.println("* filtered from end date and vendor *");
+            System.out.println("\n* filtered from end date and vendor *");
             filter(endDate, vendor, transaction);
         }
 
         else if (!description.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date, end date, and description
-            System.out.println("* filtered start-date, end-date, and description ");
+            System.out.println("\n* filtered start-date, end-date, and description ");
             filterRange(startDate, endDate,  description, transaction);
         }
 
         else if (description.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date and end date
-            System.out.println("* filtered from range start-date and end-date *");
+            System.out.println("\n* filtered from range start-date and end-date *");
             filterRange(startDate, endDate, description, transaction);
         }
 
@@ -115,19 +116,60 @@ public class CustomSearch {
 
 
         else if (startDate.isEmpty() && endDate.isEmpty() && amount == 0) { // filter by description and vendor
-            System.out.println("* filtered by description and vendor *");
+            System.out.println("\n* filtered by description and vendor *");
             filter(description, vendor, amount, transaction);
         }
 
 
         else if (startDate.isEmpty()) { // filter by end-date, vendor, amount
-            System.out.println("* filter by date, vendor, and amount *");
+            System.out.println("\n* filter by date, vendor, and amount *");
             filter(endDate,amount,description ,vendor, transaction);
         }
 
         else if (endDate.isEmpty()) { // filter by start-date, vendor, amount
             System.out.println("* filter by date, vendor, and amount *");
             filter(startDate,amount, description,vendor, transaction);
+        }
+
+        if (!startDate.isEmpty() && !endDate.isEmpty() && !description.isEmpty() && !vendor.isEmpty() && amount != 0) // filter by amount
+        {
+            System.out.println("\n* Each category *");
+            filter(startDate, endDate, description, vendor, amount, transaction);
+        }
+
+        else {
+
+            System.out.println("\nOh no something happen . . .");
+        }
+
+        System.out.println("\n* Press <enter> to reset or enter 0 to go back to reports *");
+        String choice = scanner.nextLine();
+        if(choice.equals("")){
+            customSearch(scanner, transactions);
+        } else if (choice.equals("0")) {
+            Reports.channel();
+        }else {customSearch(scanner, transactions); }
+
+    }
+
+    private static void filter(String startDate, String endDate, String description, String vendor, float amount, ArrayList<Transaction> transaction) {
+        ArrayList<Transaction> transactions1 = transaction;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate theStartDate = LocalDate.parse(startDate, formatter);
+        LocalDate theEndtDate = LocalDate.parse(endDate, formatter);
+        int counter = 1;
+
+        for (Transaction item : transactions1){
+            if (item.getDate().equals(theStartDate) && item.getDescription().toLowerCase().equals(description) && item.getVendor().toLowerCase().equals(vendor) && item.getAmount() == amount){
+                printTransaction(counter, item);
+                counter++;
+            } else if (item.getDate().isAfter(theStartDate) && item.getDate().isBefore(theEndtDate) && item.getDescription().toLowerCase().equals(description) && item.getVendor().equals(vendor) && item.getAmount() == amount) {
+                printTransaction(counter, item);
+                counter++;
+            }else if (item.getDate().equals(endDate) && item.getDescription().toLowerCase().equals(description) && item.getVendor().toLowerCase().equals(vendor) && item.getAmount() == amount){
+                printTransaction(counter, item);
+                counter++;
+            }
         }
 
     }
@@ -311,8 +353,7 @@ public class CustomSearch {
         }
     }
 
-    public static void main (String[]args) throws IOException
-    {
+    public static void main (String[]args) throws IOException, InterruptedException {
         customSearch(scanner, Ledger.getTransaction());
 
     }
