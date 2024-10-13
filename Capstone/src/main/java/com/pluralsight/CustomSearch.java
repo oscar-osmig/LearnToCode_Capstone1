@@ -70,9 +70,14 @@ public class CustomSearch {
             filter(description, vendor, amount, transaction);
         }
 
-        else if (vendor.isEmpty() && amount == 0) { // filtering by start date, end date, and description
-            System.out.println("* filtered start-date, end-date, and description");
+        else if (!description.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date, end date, and description
+            System.out.println("* filtered start-date, end-date, and description ");
             filterRange(startDate, endDate,  description, transaction);
+        }
+
+        else if (description.isEmpty() && vendor.isEmpty() && amount == 0) {
+            System.out.println("* filtered from range start-date and end-date *");
+            filterRange(startDate, endDate, description, transaction);
         }
 
         // @@@@@@@@@@@@@@@
@@ -257,7 +262,7 @@ public class CustomSearch {
                         "\n vendor: " + item.getVendor() +
                         "\n amount: " + item.getAmount());
                 counter++;
-            } else if (item.getDate().isEqual(theStartDate) && item.getDate().isBefore(theEndDate)) {
+            } else if (!item.getDate().isEqual(theStartDate) && item.getDate().isBefore(theEndDate)) {
                 System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
                         "\n time: " + item.getTime() +
                         "\n description: " + item.getDescription() +
