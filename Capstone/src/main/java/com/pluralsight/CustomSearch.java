@@ -75,6 +75,12 @@ public class CustomSearch {
             filter(startDate, description, transaction);
         }
 
+        else if (!startDate.isEmpty() && endDate.isEmpty() && description.isEmpty() && vendor.isEmpty()) { // filtering by start date and amount
+            System.out.println("* filtered from start date and description *");
+            filter(startDate, amount, transaction);
+        }
+
+
         else if (!endDate.isEmpty() && startDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by end date and description
             System.out.println("* filtered from end date and description *");
             filter(endDate, description, transaction);
@@ -100,7 +106,6 @@ public class CustomSearch {
         }
 
 
-
         else if (startDate.isEmpty()) { // filter by end-date, vendor, amount
             System.out.println("* filter by date, vendor, and amount *");
             filter(endDate,amount,description ,vendor, transaction);
@@ -111,6 +116,19 @@ public class CustomSearch {
             filter(startDate,amount, description,vendor, transaction);
         }
 
+    }
+
+    private static void filter(String startDate, float amount, ArrayList<Transaction> transaction) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate theStartDate = LocalDate.parse(startDate, formatter);
+        int counter = 1;
+        ArrayList<Transaction> transactions1 = transaction;
+        for (Transaction item: transactions1){
+            if (item.getDate().equals(theStartDate) && item.getAmount() == amount){
+                printTransaction(counter, item);
+            }
+            counter++;
+        }
     }
 
     private static void filter(String startDate, String description, ArrayList<Transaction> transaction) {
