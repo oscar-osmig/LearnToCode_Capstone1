@@ -71,6 +71,14 @@ public class CustomSearch {
             filter(description, vendor, amount, transaction);
         }
 
+        else if (vendor.isEmpty() && amount == 0) { // filtering by start date, end date, and description
+            System.out.println("* filtered start-date, end-date, and description");
+            filter(startDate,amount, endDate,  description, transaction);
+        }
+
+        // @@@@@@@@@@@@@@@
+
+
         else if (startDate.isEmpty() && endDate.isEmpty() && amount == 0) { // filter by description and vendor
             System.out.println("* filtered by description and vendor *");
             filter(description, vendor, amount, transaction);
@@ -219,11 +227,33 @@ public class CustomSearch {
         ArrayList<Transaction> transactions1 = transaction;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate theEndDate = LocalDate.parse(Date, formatter);
+        LocalDate theStartDate = LocalDate.parse(Date, formatter);
         int counter = 1;
         for (Transaction item : transactions1)
         {
             if ( theEndDate.equals(item.getDate()) && vendor.equals(item.getVendor()) && description.equals(item.getDescription()) && item.getAmount() == amount )
             {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            } else if (theStartDate.equals(item.getDate()) && theEndDate.equals(item.getDate()) && item.getDescription().equals(description)) {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            } else if (theStartDate.isBefore(item.getDate()) && theStartDate.isBefore(theEndDate) && item.getDescription().equals(description)) {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            }else if (theStartDate.equals(item.getDate()) && theStartDate.isBefore(theEndDate) && item.getDescription().equals(description)) {
                 System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
                         "\n time: " + item.getTime() +
                         "\n description: " + item.getDescription() +
