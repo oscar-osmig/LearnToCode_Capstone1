@@ -38,27 +38,72 @@ public class CustomSearch {
         {
             System.out.println("* filtered by amount *");
             filter(amount, transaction);
-        }else if (startDate.isEmpty() && description.isEmpty() && vendor.isEmpty()){ // filter by end-date and amount
-            System.out.println("* filtered by end-date and amount ");
-            filter(endDate, amount,transaction);
-        } else if ( endDate.isEmpty() && startDate.isEmpty() && vendor.isEmpty() ) { // filter by description only
+        }
+
+        else if (endDate.isEmpty() && description.isEmpty() && vendor.isEmpty() && amount == 0) { // filter by start date
+            System.out.println("* filtered by start-date *");
+            filterStartDate(startDate, transaction);
+        }
+
+        else if (startDate.isEmpty() && description.isEmpty() && vendor.isEmpty() && amount == 0) { // filter by end date
+            System.out.println("* filtered by end-date *");
+            filterStartDate(endDate, transaction);
+        }
+
+        else if ( startDate.isEmpty() && endDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filter by vendor only
             System.out.println("* filtered by start-date and amount ");
             filter(description, transaction);
-        } else if (startDate.isEmpty() && endDate.isEmpty() && amount == 0) { // filter by description and vendor
+        }
+
+
+        else if ( endDate.isEmpty() && startDate.isEmpty() && description.isEmpty() && amount == 0) { // filter by vendor only
+            System.out.println("* filtered by start-date and amount ");
+            filter(vendor, transaction);
+        }
+
+
+
+        else if (startDate.isEmpty() && endDate.isEmpty() && amount == 0) { // filter by description and vendor
             System.out.println("* filtered by description and vendor *");
             filter(description, vendor, amount, transaction);
-        } else if (description.isEmpty() && vendor.isEmpty()) { // display between start-date and end-date
+        }
+
+        else if (description.isEmpty() && vendor.isEmpty()) { // display between start-date and end-date
             System.out.println("* filtered from start-date to end-date *");
             filter(startDate, endDate,  transaction);
-        } else if (startDate.isEmpty()) { // filter by end-date, vendor, amount
+        }
+
+        else if (startDate.isEmpty()) { // filter by end-date, vendor, amount
             System.out.println("* filter by date, vendor, and amount *");
             filter(endDate, amount,description ,vendor, transaction);
-        }else if (endDate.isEmpty()) { // filter by start-date, vendor, amount
+        }
+
+        else if (endDate.isEmpty()) { // filter by start-date, vendor, amount
             System.out.println("* filter by date, vendor, and amount *");
             filter(startDate, amount, description,vendor, transaction);
         }
 
     }
+    // filter all start date only
+    public static void filterStartDate(String date, ArrayList<Transaction> transaction ){
+        int counter = 1;
+        ArrayList<Transaction> transactions1 = transaction;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate theStartDate = LocalDate.parse(date, formatter);
+        for (Transaction item : transactions1)
+        {
+            if (item.getDate().equals(theStartDate))
+            {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            }
+        }
+    }
+
     // filter by description only
     public static void filter(String description, ArrayList<Transaction> transaction )
     {
@@ -68,6 +113,13 @@ public class CustomSearch {
         {
             if (item.getDescription().equals(description))
             {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            } else if (item.getVendor().equals(description)) {
                 System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
                         "\n time: " + item.getTime() +
                         "\n description: " + item.getDescription() +
@@ -168,40 +220,39 @@ public class CustomSearch {
         LocalDate theStartDate = LocalDate.parse(startDate, formatter);
         LocalDate theEndDate = LocalDate.parse(endDate, formatter);
         int counter = 1;
-
         for (Transaction item : transactions1)
         {   //
-                //  2024-10-13             2023-04-15
-                if ( (theStartDate.equals(item.getDate())) )
-                {
-                    System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                            "\n time: " + item.getTime() +
-                            "\n description: " + item.getDescription() +
-                            "\n vendor: " + item.getVendor() +
-                            "\n amount: " + item.getAmount());
-                    counter++;
-                } else if (theStartDate.isBefore(item.getDate()) && theEndDate.isAfter(item.getDate())) {
-                    System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                            "\n time: " + item.getTime() +
-                            "\n description: " + item.getDescription() +
-                            "\n vendor: " + item.getVendor() +
-                            "\n amount: " + item.getAmount());
-                    counter++;
-                } else if (theEndDate.equals(item.getDate())) {
-                    System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                            "\n time: " + item.getTime() +
-                            "\n description: " + item.getDescription() +
-                            "\n vendor: " + item.getVendor() +
-                            "\n amount: " + item.getAmount());
-                    counter++;
-                }
+            //  2024-10-13             2023-04-15
+            if ( (theStartDate.equals(item.getDate())) )
+            {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            } else if (theStartDate.isBefore(item.getDate()) && theEndDate.isAfter(item.getDate())) {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            } else if (theEndDate.equals(item.getDate())) {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            }
 
         }
     }
 
-        public static void main (String[]args) throws IOException
-        {
-            customSearch(scanner, Ledger.getTransaction());
+    public static void main (String[]args) throws IOException
+    {
+        customSearch(scanner, Ledger.getTransaction());
 
-        }
     }
+}
