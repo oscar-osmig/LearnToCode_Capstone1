@@ -86,12 +86,15 @@ public class CustomSearch {
             filter(startDate, vendor, transaction);
         }
 
+        else if (endDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date and description
+            System.out.println("* filtered from start date and description *");
+            filter(startDate, description, transaction);
+        }
 
         else if (!endDate.isEmpty() && startDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by end date and description
             System.out.println("* filtered from end date and description *");
             filter(endDate, description, transaction);
         }
-
 
         else if (!description.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date, end date, and description
             System.out.println("* filtered start-date, end-date, and description ");
