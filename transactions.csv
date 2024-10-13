@@ -1,20 +1,29 @@
 date|time|description|vendor|amount
 2023-04-15|10:13:25|ergonomic keyboard|amazon|-89.50
+2023-04-16|10:13:25|ergonomic keyboard|amazon|-89.50
+2023-04-17|10:13:25|ergonomic keyboard|amazon|-89.50
 2023-04-15|11:15:00|Invoice 1001 paid|Joe|1500.00
-2024-10-11|16:06:46|invoice 2|ramos|1334.0
+2023-05-12|11:15:00|Invoice 1001 paid|Joe|1500.00
+2024-09-11|16:06:46|invoice 2|ramos|1334.0
 2024-09-11|16:08:46|invoice 2|ramos|1334.0
-2024-10-11|16:16:51|chinchilla's backpack|Amazon|-25.54
-2024-10-11|16:26:20|bunny bagpack|amazon|-12.99
-2024-10-11|16:49:30|soda 3445|waltmart|-2.34
-2024-10-11|16:58:39|shirt 3456|amazon|-23.34
-2024-10-11|17:01:14|wallet 3444|alibaba|-23.0
-2024-10-11|17:01:49|invoice 2002|osmig|23.98
-2024-10-11|19:14:17|invoice 100003|runerth|125.45
-2024-10-11|19:17:40|invoice 1111|eybrajam|1234.0
 2024-10-11|21:01:35|invoice 100023|harvinder|123.34
 2024-10-11|21:02:51|Shoes 4555|amazon|-45.67
-2024-10-12|10:12:12|invoce 30003|osmig|1234.45
+2024-10-12|16:16:51|chinchilla's backpack|Amazon|-25.54
+2024-10-12|16:26:20|bunny bagpack|amazon|-12.99
+2024-10-12|10:12:12|invoice 30003|osmig|1234.45
+2024-10-12|10:12:12|invoice 30033|oscar|1234.45
 2024-10-12|10:16:53|invoice 3434|carls|456.0
 2024-10-12|10:17:11|invoice 000001|james|45.0
 2024-10-12|10:32:25|invoice 30002|fran|345.0
 2024-10-12|10:33:33|caramel frappe 4543|starbucks|-14.75
+2024-10-13|16:49:30|soda 3445|waltmart|-2.34
+2024-10-13|10:33:33|caramel frappe 4543|starbucks|-14.75
+2024-10-14|16:58:39|shirt 3456|amazon|-23.34
+2024-10-14|17:01:14|wallet 3444|alibaba|-23.0
+2024-10-14|17:01:49|invoice 2002|osmig|23.98
+2024-10-14|10:33:33|caramel frappe 4543|starbucks|-14.75
+2024-10-15|10:33:33|caramel frappe 4543|starbucks|-14.75
+2024-10-15|19:14:17|invoice 100003|runerth|125.45
+2024-10-15|19:17:40|invoice 1111|eybrajam|1234.0
+2024-10-16|19:17:40|invoice 1111|eybrajam|1234.0
+2024-10-17|19:17:40|invoice 1111|eybrajam|1234.0
