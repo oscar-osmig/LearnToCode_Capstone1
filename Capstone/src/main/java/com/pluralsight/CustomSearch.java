@@ -70,6 +70,11 @@ public class CustomSearch {
             filter(description, vendor, amount, transaction);
         }
 
+        else if (!startDate.isEmpty() && endDate.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date and description
+            System.out.println("* filtered from start date and description *");
+            filter(startDate, description, transaction);
+        }
+
         else if (!description.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date, end date, and description
             System.out.println("* filtered start-date, end-date, and description ");
             filterRange(startDate, endDate,  description, transaction);
@@ -79,8 +84,6 @@ public class CustomSearch {
             System.out.println("* filtered from range start-date and end-date *");
             filterRange(startDate, endDate, description, transaction);
         }
-
-
 
         // @@@@@@@@@@@@@@@
 
@@ -104,7 +107,22 @@ public class CustomSearch {
 
     }
 
+    private static void filter(String startDate, String description, ArrayList<Transaction> transaction) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate theStartDate = LocalDate.parse(startDate, formatter);
+        int counter = 1;
+        ArrayList<Transaction> transactions1 = transaction;
+        for (Transaction item: transactions1){
+            if (item.getDate().equals(theStartDate) && item.getDescription().equals(description)){
+                printTransaction(counter, item);
+            }
+            counter++;
+        }
+
+    }
+
     public static void printTransaction(int counter, Transaction item){
+
         System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
                 "\n time: " + item.getTime() +
                 "\n description: " + item.getDescription() +
