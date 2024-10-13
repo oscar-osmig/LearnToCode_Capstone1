@@ -41,18 +41,21 @@ public class CustomSearch {
         }else if (startDate.isEmpty() && description.isEmpty() && vendor.isEmpty()){ // filter by end-date and amount
             System.out.println("* filtered by end-date and amount ");
             filter(endDate, amount,transaction);
-        } else if ( endDate.isEmpty() && startDate.isEmpty() && vendor.isEmpty() && amount == 0) {
+        } else if ( endDate.isEmpty() && startDate.isEmpty() && vendor.isEmpty() ) { // filter by description only
             System.out.println("* filtered by start-date and amount ");
             filter(description, transaction);
-        } else if (description.isEmpty() && vendor.isEmpty()) {
+        } else if (startDate.isEmpty() && endDate.isEmpty() && amount == 0) { // filter by description and vendor
+            System.out.println("* filtered by description and vendor *");
+            filter(description, vendor, amount, transaction);
+        } else if (description.isEmpty() && vendor.isEmpty()) { // display between start-date and end-date
             System.out.println("* filtered from start-date to end-date *");
             filter(startDate, endDate,  transaction);
         } else if (startDate.isEmpty()) { // filter by end-date, vendor, amount
             System.out.println("* filter by date, vendor, and amount *");
-            filter(endDate, amount, vendor, transaction);
+            filter(endDate, amount,description ,vendor, transaction);
         }else if (endDate.isEmpty()) { // filter by start-date, vendor, amount
             System.out.println("* filter by date, vendor, and amount *");
-            filter(startDate, amount, vendor, transaction);
+            filter(startDate, amount, description,vendor, transaction);
         }
 
     }
@@ -93,6 +96,30 @@ public class CustomSearch {
             }
         }
     }
+
+    public static void filter(String description, String vendor, float amount, ArrayList<Transaction> transaction )
+    {
+        description.trim().toLowerCase();
+        vendor.trim().toLowerCase();
+        System.out.println(description);
+        System.out.println(vendor);
+        ArrayList<Transaction> transactions1 = transaction;
+        int counter = 1;
+        for (Transaction item : transactions1)
+        {
+
+            if (description.equals(item.getDescription().trim()) && vendor.equals(item.getVendor().trim()) && amount == 0)
+            {
+                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                        "\n time: " + item.getTime() +
+                        "\n description: " + item.getDescription() +
+                        "\n vendor: " + item.getVendor() +
+                        "\n amount: " + item.getAmount());
+                counter++;
+            }
+        }
+    }
+
     // filtered by  date and amount
     public static void filter(String Date, float amount, ArrayList<Transaction> transaction )
     {
@@ -113,8 +140,8 @@ public class CustomSearch {
             }
         }
     }
-    // filter by date (either star/end date), amount, and vendor
-    public static void filter(String Date, float amount, String vendor, ArrayList<Transaction> transaction )
+    // filter by date (either star/end date), amount, and vendor, description
+    public static void filter(String Date, float amount, String vendor, String description ,ArrayList<Transaction> transaction )
     {
         ArrayList<Transaction> transactions1 = transaction;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -122,7 +149,7 @@ public class CustomSearch {
         int counter = 1;
         for (Transaction item : transactions1)
         {
-            if ( theEndDate.equals(item.getDate()) && vendor.equals(item.getVendor()) && item.getAmount() == amount )
+            if ( theEndDate.equals(item.getDate()) && vendor.equals(item.getVendor()) && description.equals(item.getDescription()) && item.getAmount() == amount )
             {
                 System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
                         "\n time: " + item.getTime() +
