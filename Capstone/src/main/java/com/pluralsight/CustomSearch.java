@@ -75,10 +75,12 @@ public class CustomSearch {
             filterRange(startDate, endDate,  description, transaction);
         }
 
-        else if (description.isEmpty() && vendor.isEmpty() && amount == 0) {
+        else if (description.isEmpty() && vendor.isEmpty() && amount == 0) { // filtering by start date and end date
             System.out.println("* filtered from range start-date and end-date *");
             filterRange(startDate, endDate, description, transaction);
         }
+
+
 
         // @@@@@@@@@@@@@@@
 
@@ -101,6 +103,17 @@ public class CustomSearch {
         }
 
     }
+
+    public static void printTransaction(int counter, Transaction item){
+        System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
+                "\n time: " + item.getTime() +
+                "\n description: " + item.getDescription() +
+                "\n vendor: " + item.getVendor() +
+                "\n amount: " + item.getAmount());
+
+    }
+
+
     // filter all start date only
     public static void filterStartDate(String date, ArrayList<Transaction> transaction ){
         int counter = 1;
@@ -111,11 +124,7 @@ public class CustomSearch {
         {
             if (item.getDate().equals(theStartDate))
             {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             }
         }
@@ -130,18 +139,11 @@ public class CustomSearch {
         {
             if (item.getDescription().equals(description))
             {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             } else if (item.getVendor().equals(description)) {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+
+                printTransaction(counter, item);
                 counter++;
             }
         }
@@ -156,11 +158,7 @@ public class CustomSearch {
         {
             if (item.getAmount() == amount)
             {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             }
         }
@@ -178,25 +176,13 @@ public class CustomSearch {
 
             if (description.equals(item.getDescription().trim()) && vendor.equals(item.getVendor().trim()) && amount == item.getAmount())
             {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             }else if (description.equals(item.getDescription().trim()) && vendor.equals(item.getVendor().trim()) && amount == 0) {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             } else if (item.getVendor().equals(vendor) && item.getAmount() == amount) {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             }
         }
@@ -213,11 +199,7 @@ public class CustomSearch {
         {
             if ( theEndDate.equals(item.getDate()) && item.getAmount() == amount )
             {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             }
         }
@@ -234,11 +216,7 @@ public class CustomSearch {
         {
             if ( theEndDate.equals(item.getDate()) && vendor.equals(item.getVendor()) && description.equals(item.getDescription()) && item.getAmount() == amount )
             {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             }
         }
@@ -256,32 +234,17 @@ public class CustomSearch {
             //  2024-10-13             2023-04-15
             if ( item.getDate().equals(theStartDate) )
             {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             } else if (!item.getDate().isEqual(theStartDate) && item.getDate().isBefore(theEndDate)) {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
-            } else if (item.getDate().equals(theEndDate)) {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+            } else if (item.getDate().equals(theEndDate))
+            {
+                printTransaction(counter, item);
                 counter++;
             } else if (item.getDate().equals(theStartDate) && item.getDescription().equals(description) || item.getDate().equals(endDate) && item.getDescription().equals(description)) {
-                System.out.println("\n----- TRANSACTION " + counter + " -----\n" + " date: " + item.getDate() +
-                        "\n time: " + item.getTime() +
-                        "\n description: " + item.getDescription() +
-                        "\n vendor: " + item.getVendor() +
-                        "\n amount: " + item.getAmount());
+                printTransaction(counter, item);
                 counter++;
             }
 
