@@ -23,10 +23,10 @@ public class CustomSearch {
         String endDate = scanner.nextLine();
         // Description
         System.out.println("Description:");
-        String description = scanner.nextLine();
+        String description = scanner.nextLine().toLowerCase();
         // vendor
         System.out.println("Vendor:");
-        String vendor = scanner.nextLine();
+        String vendor = scanner.nextLine().toLowerCase();
         // amount
         System.out.println("Amount: ( enter 0 to leave blank)");
         float amount = scanner.nextFloat();
@@ -112,14 +112,10 @@ public class CustomSearch {
             filterRange(startDate, endDate, description, transaction);
         }
 
-        // @@@@@@@@@@@@@@@
-
-
         else if (startDate.isEmpty() && endDate.isEmpty() && amount == 0) { // filter by description and vendor
             System.out.println("\n* filtered by description and vendor *");
             filter(description, vendor, amount, transaction);
         }
-
 
         else if (startDate.isEmpty()) { // filter by end-date, vendor, amount
             System.out.println("\n* filter by date, vendor, and amount *");
@@ -159,7 +155,7 @@ public class CustomSearch {
             if (item.getDate().equals(theStartDate) && item.getDescription().toLowerCase().equals(description) && item.getVendor().toLowerCase().equals(vendor) && item.getAmount() == amount){
                 printTransaction(counter, item);
                 counter++;
-            } else if (item.getDate().isAfter(theStartDate) && item.getDate().isBefore(theEndtDate) && item.getDescription().toLowerCase().equals(description) && item.getVendor().equals(vendor) && item.getAmount() == amount) {
+            } else if (item.getDate().isAfter(theStartDate) && item.getDate().isBefore(theEndtDate) && item.getDescription().toLowerCase().equals(description) && item.getVendor().toLowerCase().equals(vendor) && item.getAmount() == amount) {
                 printTransaction(counter, item);
                 counter++;
             }else if (item.getDate().equals(endDate) && item.getDescription().toLowerCase().equals(description) && item.getVendor().toLowerCase().equals(vendor) && item.getAmount() == amount){
@@ -189,7 +185,7 @@ public class CustomSearch {
         int counter = 1;
         ArrayList<Transaction> transactions1 = transaction;
         for (Transaction item: transactions1){
-            if (item.getDate().equals(theStartDate) && item.getDescription().equals(description)){
+            if (item.getDate().equals(theStartDate) && item.getDescription().toLowerCase().equals(description)){
                 printTransaction(counter, item);
                 counter++;
             }else if (item.getDate().equals(theStartDate) && item.getVendor().toLowerCase().equals(description)) {
@@ -272,11 +268,11 @@ public class CustomSearch {
         for (Transaction item : transactions1)
         {
 
-            if (description.equals(item.getDescription().trim()) && vendor.equals(item.getVendor().trim()) && amount == item.getAmount())
+            if (description.equals(item.getDescription().toLowerCase()) && vendor.equals(item.getVendor().toLowerCase()) && amount == item.getAmount())
             {
                 printTransaction(counter, item);
                 counter++;
-            }else if (description.equals(item.getDescription().trim()) && vendor.equals(item.getVendor().trim()) && amount == 0) {
+            }else if (description.equals(item.getDescription().toLowerCase()) && vendor.equals(item.getVendor().toLowerCase()) && amount == 0) {
                 printTransaction(counter, item);
                 counter++;
             } else if (item.getVendor().equals(vendor) && item.getAmount() == amount) {
@@ -312,7 +308,7 @@ public class CustomSearch {
         int counter = 1;
         for (Transaction item : transactions1)
         {
-            if ( theEndDate.equals(item.getDate()) && vendor.equals(item.getVendor()) && description.equals(item.getDescription()) && item.getAmount() == amount )
+            if ( theEndDate.equals(item.getDate()) && vendor.equals(item.getVendor().toLowerCase()) && description.equals(item.getDescription().toLowerCase()) && item.getAmount() == amount )
             {
                 printTransaction(counter, item);
                 counter++;
@@ -341,7 +337,7 @@ public class CustomSearch {
             {
                 printTransaction(counter, item);
                 counter++;
-            } else if (item.getDate().equals(theStartDate) && item.getDescription().equals(description) || item.getDate().equals(endDate) && item.getDescription().equals(description)) {
+            } else if (item.getDate().equals(theStartDate) && item.getDescription().toLowerCase().equals(description) || item.getDate().equals(endDate) && item.getDescription().toLowerCase().equals(description)) {
                 printTransaction(counter, item);
                 counter++;
             }

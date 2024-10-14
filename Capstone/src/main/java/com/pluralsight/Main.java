@@ -25,7 +25,7 @@ public class Main
         do {
             display_home();
             System.out.println("Your choice:");
-            String choice = scanner.nextLine();
+            String choice = scanner.nextLine().trim().toLowerCase();
             switch (choice)
             {
                 case "D": case "d":

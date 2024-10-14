@@ -33,7 +33,7 @@ public class Ledger {
         do {
             board();
             System.out.println("Your choice:");
-            String choice = scanner.nextLine();
+            String choice = scanner.nextLine().trim().toLowerCase();
             switch (choice)
             {
                 case "A": case "a":
