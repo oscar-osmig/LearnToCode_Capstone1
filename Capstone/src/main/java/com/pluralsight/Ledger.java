@@ -21,10 +21,10 @@ public class Ledger {
         String spacing2 = "                                                                  \n";
         Ascii_visuals.display("ledger.txt");
         System.out.println("\n" + spacing1 +" A) All transactions" + spacing2 +
-                           spacing1 + " D) Deposits        " + spacing2 +
-                           spacing1 + " P) Payments        " + spacing2 +
-                           spacing1 + " R) Reports         " + spacing2 +
-                           spacing1 + " H) Home            " + spacing2);
+                spacing1 + " D) Deposits        " + spacing2 +
+                spacing1 + " P) Payments        " + spacing2 +
+                spacing1 + " R) Reports         " + spacing2 +
+                spacing1 + " H) Home            " + spacing2);
 
     }
 
@@ -38,24 +38,24 @@ public class Ledger {
             {
                 case "A": case "a":
                 // add method for displaying
-                    displayAllTransaction();
-                    running = false;
-                    break;
+                displayAllTransaction();
+                running = false;
+                break;
                 case "D": case "d":
-                    display_deposits(scanner, getTransaction());
-                    running = false;
-                    break;
+                display_deposits(scanner, getTransaction());
+                running = false;
+                break;
                 case "P": case "p":
-                    display_payments(scanner, getTransaction());
-                    running = false;
-                    break;
+                display_payments(scanner, getTransaction());
+                running = false;
+                break;
                 case "R": case "r":
-                    Reports.channel();
-                    running = false;
-                    break;
+                Reports.channel();
+                running = false;
+                break;
                 case "H": case "h":
-                    Main.channel();
-                    break;
+                Main.channel();
+                break;
                 default:
                     System.out.println("That's not a valid option, try again ...");
             }
@@ -86,13 +86,10 @@ public class Ledger {
         for (int i = 0; i < data_in_file.size(); i++)
         {
             Transaction p = data_in_file.get(i);
-            System.out.println("------ transaction " + counter + " ------ \n" + p.getDate() + "\nTime: " + p.getTime() + "\nDescription: " +
-                    p.getDescription() + "\nVendor: " + p.getVendor() + "\nAmount: " + p.getAmount() + "\n");
+            CustomSearch.printTransaction(counter, p);
             counter++;
         }
-        System.out.println("\n* Press < enter > when ready to get back to menu *");
-        String input = scanner.nextLine();
-        if (input.equals("")){channel();}
+        backToMenu(scanner);
     }
 
     public static void display_deposits(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
@@ -101,14 +98,11 @@ public class Ledger {
         {
             if(deposits.getAmount() > 0) {
                 //found it!
-                System.out.println("------ deposit " + counter + " ------ \n" + "\nDate: " + deposits.getDate() + "\nTime: " + deposits.getTime() + "\nDescription: " +
-                        deposits.getDescription() + "\nVendor: " + deposits.getVendor() + "\nAmount: " + deposits.getAmount() + "\n");
+                CustomSearch.printTransaction(counter,deposits);
                 counter++;
             }
         }
-        System.out.println("\n* Press < enter > when ready to get back to menu *");
-        String input = scanner.nextLine();
-        if (input.equals("")){channel();}
+        backToMenu(scanner);
     }
 
     public static void display_payments(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
@@ -117,16 +111,19 @@ public class Ledger {
         {
             if(deposits.getAmount() < 0) {
                 //found it!
-                System.out.println("------ payment " + counter + " ------ \n" + "\nDate: " + deposits.getDate() + "\nTime: " + deposits.getTime() + "\nDescription: " +
-                        deposits.getDescription() + "\nVendor: " + deposits.getVendor() + "\nAmount: " + deposits.getAmount() + "\n");
+                CustomSearch.printTransaction(counter,deposits);
                 counter++;
             }
         }
+        backToMenu(scanner);
+    }
+
+    public static void backToMenu(Scanner scanner) throws IOException, InterruptedException {
         System.out.println("\n* Press < enter > when ready to get back to menu *");
         String input = scanner.nextLine();
-
         if (input.equals("")){channel();}
     }
+
 
     public static void main(String[] args) throws IOException, InterruptedException
     {

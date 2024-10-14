@@ -137,10 +137,6 @@ public class CustomSearch {
             filter(startDate, endDate, description, vendor, amount, transaction);
         }
 
-        else {
-
-            System.out.println("\nOh no something happen . . .");
-        }
 
         System.out.println("\n* Press <enter> to reset or enter 0 to go back to reports *");
         String choice = scanner.nextLine();

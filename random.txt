@@ -20,3 +20,11 @@ else if (theStartDate.equals(item.getDate()) && theEndDate.equals(item.getDate()
                         "\n amount: " + item.getAmount());
                 counter++;
             }
+
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$PRINT TRANSACTION ON LEDGER $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+System.out.println("------ payment " + counter + " ------ \n" + "\nDate: " + deposits.getDate() + "\nTime: " + deposits.getTime() + "\nDescription: " +
+                        deposits.getDescription() + "\nVendor: " + deposits.getVendor() + "\nAmount: " + deposits.getAmount() + "\n");
+
+
