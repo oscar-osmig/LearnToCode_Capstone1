@@ -1,14 +1,36 @@
 package com.pluralsight;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class CustomSearch {
     static Scanner scanner = new Scanner(System.in);
+    private static boolean run = true;
+
+    public static boolean checkIfDateFormat(String input1, String input2){
+        String format = "yyyy-MM-dd";
+        //LocalDate theStartDate = LocalDate.parse(input, formatter);
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        sdf.setLenient(false);
+
+        try{
+            Date parseDate = sdf.parse(input1);
+            Date parseDate2 = sdf.parse(input2);
+            return true;
+        } catch (ParseException e) {
+            return false;
+        }
+
+    }
+
 
     public static void customSearch(Scanner scanner, ArrayList<Transaction> transactions) throws IOException, InterruptedException {
 
@@ -21,6 +43,12 @@ public class CustomSearch {
         // end date
         System.out.println("End date: (yyyy-mm-dd)");
         String endDate = scanner.nextLine();
+
+        // make sure the date is able to parse to LocalDate
+        if(!checkIfDateFormat(startDate, endDate)){
+            System.out.println("* Both dates must be the right format! *");
+            customSearch(scanner, transactions);
+        }
         // Description
         System.out.println("Description:");
         String description = scanner.nextLine().toLowerCase();
@@ -32,6 +60,8 @@ public class CustomSearch {
         float amount = scanner.nextFloat();
         scanner.nextLine();
         // if not enter value variable not needed in the search
+
+
 
         ArrayList<Transaction> transaction = transactions;
 
@@ -132,7 +162,8 @@ public class CustomSearch {
             System.out.println("\n* Each category *");
             filter(startDate, endDate, description, vendor, amount, transaction);
         }
-
+        else {System.out.println("* Transaction not found *");}
+        Thread.sleep(200);
 
         System.out.println("\n* Press <enter> to reset or enter 0 to go back to reports *");
         String choice = scanner.nextLine();
