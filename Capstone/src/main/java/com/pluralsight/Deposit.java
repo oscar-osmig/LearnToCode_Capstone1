@@ -54,7 +54,7 @@ public class Deposit
         //System.out.println(todays_transaction);
         bufferedWriter.write(todays_transaction);
         bufferedWriter.close();
-
+        test.loading("Loading");
         System.out.println("* Successful Deposit *");
         System.out.println("\nDo you want to make a new deposit? y: yes n: Home Screen");
         String choice = scanner.nextLine();

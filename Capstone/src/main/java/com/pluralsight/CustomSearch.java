@@ -36,9 +36,9 @@ public class CustomSearch {
 
         Ascii_visuals.display("customSearch.txt");
 
-        System.out.println("\n* Press <enter> to live category blank *");
+        System.out.println("* Press <enter> to live category blank *");
         // start date
-        System.out.println("\nStart date: (yyyy-mm-dd)");
+        System.out.println("Start date: (yyyy-mm-dd)");
         String startDate = scanner.nextLine();
         // end date
         System.out.println("End date: (yyyy-mm-dd)");
@@ -60,6 +60,7 @@ public class CustomSearch {
         float amount = scanner.nextFloat();
         scanner.nextLine();
         // if not enter value variable not needed in the search
+        test.loading("Searching");
 
 
 
@@ -162,18 +163,21 @@ public class CustomSearch {
             System.out.println("\n* Each category *");
             filter(startDate, endDate, description, vendor, amount, transaction);
         }
-        else {System.out.println("* Transaction not found *");}
+
+
         Thread.sleep(200);
 
         System.out.println("\n* Press <enter> to reset or enter 0 to go back to reports *");
         String choice = scanner.nextLine();
         if(choice.equals("")){
+            //Thread.sleep(100);
             customSearch(scanner, transactions);
         } else if (choice.equals("0")) {
             Reports.channel();
         }else {customSearch(scanner, transactions); }
 
     }
+
 
     private static void filter(String startDate, String endDate, String description, String vendor, float amount, ArrayList<Transaction> transaction) {
         ArrayList<Transaction> transactions1 = transaction;
