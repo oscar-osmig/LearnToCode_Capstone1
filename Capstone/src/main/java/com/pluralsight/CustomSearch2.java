@@ -10,10 +10,11 @@ import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import static com.pluralsight.CustomSearch.customSearch;
+
+// Maaike gave me insights and hints to make the custom search app better
 public class CustomSearch2 {
     private static Scanner scanner = new Scanner(System.in);
-
-
 
  //   private static ArrayList<Transaction> transactions; = Ledger.getTransaction();
 
@@ -68,7 +69,14 @@ public class CustomSearch2 {
             counter++;
         }
 
-        // print each transaction
+        System.out.println("\n* Press <enter> to reset or enter 0 to go back to reports *");
+        String choice = scanner.nextLine();
+        if(choice.equals("")){
+            Thread.sleep(100);
+            search(scanner);
+        } else if (choice.equals("0")) {
+            Reports.channel();
+        }else {search(scanner); }
 
 
     }
