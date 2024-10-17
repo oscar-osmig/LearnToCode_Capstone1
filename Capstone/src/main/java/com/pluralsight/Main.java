@@ -30,7 +30,7 @@ public class Main
             {
                 case "D": case "d":
                 // add method for depositing
-                Deposit.add_deposit(scanner);
+                    Deposit.add_deposit(scanner);
                     running = false;
                     break;
                 case "P": case "p":

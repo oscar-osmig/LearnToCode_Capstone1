@@ -5,7 +5,7 @@ import java.util.List;
 
 public class test {
     public static void main(String[] args) throws InterruptedException {
-        loading("Loading");
+        loading("Searching");
     }
     public static void loading(String s){
         System.out.println("");
@@ -19,4 +19,9 @@ public class test {
         }
         System.out.println("");
     }
+
+    public static void refreshTerminal(){
+        System.out.print("\r");
+    }
+
 }

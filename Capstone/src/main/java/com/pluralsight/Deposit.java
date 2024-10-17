@@ -56,11 +56,25 @@ public class Deposit
         bufferedWriter.close();
         test.loading("Loading");
         System.out.println("* Successful Deposit *");
-        System.out.println("\nDo you want to make a new deposit? y: yes n: Home Screen");
-        String choice = scanner.nextLine();
-        switch (choice){case "n": Main.channel(); break; case "y": add_deposit(scanner); break;}
+        askToContinue();
 
     }
+    public static void askToContinue() throws IOException, InterruptedException {
+        System.out.println("\nDo you want to make a new deposit? y: yes n: Home Screen");
+        String choice = scanner.nextLine();
+        switch (choice) {
+            case "n":
+
+                Main.channel();
+                break;
+            case "y":
+                add_deposit(scanner);
+                break;
+            default:
+                askToContinue();
+        }
+    }
+
 
     public static LocalDate local_date(){
         LocalDate day = LocalDate.now();

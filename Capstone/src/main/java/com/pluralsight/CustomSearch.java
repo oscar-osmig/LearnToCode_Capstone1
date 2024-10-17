@@ -170,7 +170,7 @@ public class CustomSearch {
         System.out.println("\n* Press <enter> to reset or enter 0 to go back to reports *");
         String choice = scanner.nextLine();
         if(choice.equals("")){
-            //Thread.sleep(100);
+            Thread.sleep(100);
             customSearch(scanner, transactions);
         } else if (choice.equals("0")) {
             Reports.channel();

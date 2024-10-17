@@ -75,7 +75,7 @@ public class Ledger {
             Transaction transaction1 = new Transaction(LocalDate.parse(category[0]), LocalTime.parse(category[1]), category[2], category[3], Float.parseFloat(category[4])); // make a new product with the parts of the array we made
             transactions.add(transaction1);
         }
-        Collections.sort(transactions, Comparator.comparing(Transaction::getDate));
+        Collections.sort(transactions, Comparator.comparing(Transaction::getDate).thenComparing(Transaction::getTime));
         return transactions;
     }
 
